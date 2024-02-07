@@ -22,7 +22,7 @@ Y x cavetti per collegare l'ESP a periferiche esterne
 
 ## 2. Creare il seguente schema elettrico
 
-![Wiring Diagram](/images/wiring_diagram.png)
+![Wiring Diagram](./images/wiring_diagram.png)
 *Wiring Diagram*
 
 ## 3. Configurare l'Arduino IDE e il pc
