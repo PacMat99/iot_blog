@@ -1,48 +1,29 @@
 ---
-title: Setup ESP
-layout: home
+title: Setup ESPx
+layout: default
+nav_order: 2
 ---
 
-# ESP8266 / ESP32 configuration
+# Configurazione ESP8266 / ESP32
 
-## 1 - Install Arduino IDE
+## 1. Installare Arduino IDE
 
-Download and install Arduino IDE from [this site](https://www.arduino.cc/en/software)
+[Scaricare](https://www.arduino.cc/en/software) e installare l'Arduino IDE
 
-## 2 - Install esptool and flash ESP32 fw
+## 2. Installare la scheda ESP8266 / ESP32 nell'Arduino IDE
 
-	esptool.py --port USBPORT erase_flash
-	esptool.py --port USBPORT --baud 460800 write_flash --flash_size=detect 0x1000 esp32_file_name.bin
+![Arduino URL](/images/arduino_url.png)
 
-## 3 - Install ESP32 board on Arduino IDE
+### ESP8266
 
-1. Add https://espressif.github.io/arduino-esp32/package_esp32_index.json to "Additional Boards Manager URLs" in Arduino IDE settings.
-2. Install ESP32 board by Espressif from board manager
+1. Aggiungere https://arduino.esp8266.com/stable/package_esp8266com_index.json in "Additional Boards Manager URLs" nelle impostazioni dell'Arduino IDE
+2. Installare il package di *ESP8266* per l'ESP8266 dal Board Manager
 
-## 3.1 (if required) - Install CH340 driver on Ubuntu
+![ESP8266 Board](/images/esp8266_board.png)
 
-	sudo apt remove brltty
-	sudo apt update
-	sudo apt install neofetch -y
-	neofetch
+### ESP32
 
--------- if kernel version is before 6.x --------
+1. Aggiungere https://espressif.github.io/arduino-esp32/package_esp32_index.json in "Additional Boards Manager URLs" nelle impostazioni dell'Arduino IDE
+2. Installare il package di *Espressif* per l'ESP32 dal Board Manager
 
-	sudo add-apt-repository ppa:cappelikan/ppa
-	sudo apt update -y
-	sudo apt install mainline -y
-	sudo apt autoremove -y
-
--------- end if --------
-
-	sudo apt-get install build-essential dwarves dkms make cmake -y
-	sudo apt autoremove -y
-	git clone https://github.com/juliagoda/CH341SER
-	cd CH341SER
-	sudo make clean 
-	cp /sys/kernel/btf/vmlinux /usr/lib/modules/`uname -r`/build/
-	sudo make
-	sudo make load
-	lsmod | grep ch34*
-	sudo usermod -a -G dialout $(whoami)
-	sudo chmod a+rw /dev/ttyUSB0
+![ESP32 Board](/images/esp32_board.png)

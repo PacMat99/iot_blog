@@ -1,48 +1,65 @@
 ---
 title: Setup NodeRED
-layout: home
+layout: default
+nav_order: 3
 ---
 
 # Setup di NodeRED su Raspberry
 
 ## 1 - Installazione del client Mosquitto
 
-Esegui da terminale i seguenti comandi:
+Eseguire da terminale i seguenti comandi:
 
-    sudo apt update && sudo apt upgrade
-    sudo apt install -y mosquitto mosquitto-clients
-    sudo systemctl enable mosquitto.service
-    mosquitto -v
+```
+sudo apt update && sudo apt upgrade
+sudo apt install -y mosquitto mosquitto-clients
+sudo systemctl enable mosquitto.service
+mosquitto -v
+```
 
 ## 2 - Abilitazione dell'accesso remoto e autenticazione
 
-Apri il file mosquitto.conf con l'editor che preferisci:
+Aprire il file mosquitto.conf con l'editor preferito:
 
-    sudo vim /etc/mosquitto/mosquitto.conf
+```
+sudo vim /etc/mosquitto/mosquitto.conf
+```
 
-e incolla quanto segue:
+e incollare quanto segue:
 
-    listener 1883
-    allow_anonymous true
+```
+listener 1883
+allow_anonymous true
+```
 
-Esegui il comando seguente sostituendo YOUR_USERNAME con il nome dell'utente che utilizzerai per loggarti e memorizza nome utente e password:
+Eseguire il comando seguente sostituendo YOUR_USERNAME con il nome dell'utente che utilizzato per loggarsi e memorizzare nome utente e password:
 
-    sudo mosquitto_passwd -c /etc/mosquitto/passwd YOUR_USERNAME
+```
+sudo mosquitto_passwd -c /etc/mosquitto/passwd YOUR_USERNAME
+```
 
-Apri il file mosquitto.conf con l'editor che preferisci:
+Aprire il file mosquitto.conf con l'editor preferito:
 
-    sudo vim /etc/mosquitto/mosquitto.conf
+```
+sudo vim /etc/mosquitto/mosquitto.conf
+```
 
-e aggiungi la riga seguente all'inizio del file per permettere solo connessioni autenticate:
+e aggiungere la riga seguente all'inizio del file per permettere solo connessioni autenticate:
 
-    per_listener_settings true
+```
+per_listener_settings true
+```
 
 e le righe seguenti alla fine del file:
 
-    allow_anonymous false
-    listener 1883
-    password_file /etc/mosquitto/passwd
+```
+allow_anonymous false
+listener 1883
+password_file /etc/mosquitto/passwd
+```
 
-Infine riavvia Mosquitto:
+Infine riavviare Mosquitto:
 
-    sudo systemctl restart mosquitto
+```
+sudo systemctl restart mosquitto
+```
