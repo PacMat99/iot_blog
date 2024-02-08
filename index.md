@@ -29,6 +29,10 @@ Y x cavetti per collegare l'ESP a periferiche esterne
 
 Configurare l'Arduino IDE e il pc affinché siano in grado di riconoscere e programmare l'ESP8266 / ESP32 come indicato in ["Setup ESP"](./esp_setup.html).
 
+## 4. Installare NodeRED su Raspberry Pi
+
+Installare Mosquitto e NodeRED sul Raspberry Pi come indicato in ["Setup NodeRED"](./nodered_setup.html).
+
 ----
 
 Made with &hearts; by [PacMat99](https://github.com/PacMat99)
