@@ -27,3 +27,5 @@ nav_order: 2
 2. Installare il package di *Espressif* per l'ESP32 dal Board Manager
 
 ![ESP32 Board](./images/esp32_board.png)
+
+Avanti al [prossimo step](./index.html)! :)
