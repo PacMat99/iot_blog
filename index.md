@@ -28,7 +28,7 @@ Configurare l'Arduino IDE e il pc affinché siano in grado di riconoscere e prog
 
 Per testare il corretto funzionamento dell'ESPx è consigliabile procedere per step in modo da poter isolare al meglio i singoli problemi che possiamo riscontrare.
 
-Se vuoi saperne di più su come eseguire questi test, trovi diverse info [qua](./esp_tests.html)
+Se vuoi saperne di più su come eseguire questi test, trovi diverse info [qui](./tests/esp_tests.html)
 
 ## 4. Creare lo schema elettrico
 
