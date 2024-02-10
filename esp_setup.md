@@ -28,4 +28,4 @@ nav_order: 2
 
 ![ESP32 Board](./images/esp32_board.png)
 
-Avanti al [prossimo step](./index.html)! :)
+Avanti al [prossimo step](./tests/esp_tests.html)! :)
