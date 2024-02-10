@@ -1,69 +1,39 @@
 ---
-title: Setup NodeRED
+title: Setup Node-RED
 layout: default
-nav_order: 3
+nav_order: 4
 ---
 
-# Setup di NodeRED su Raspberry Pi
+# Setup di Node-RED su Raspberry Pi
 
-## 1. Installazione del client Mosquitto
+## 0. Cos'è Node-RED
 
-Eseguire da terminale i seguenti comandi:
+Node-RED is a powerful open-source tool for building Internet of Things (IoT) applications with the goal of simplifying the programming component.
 
-```
-sudo apt update && sudo apt upgrade
-sudo apt install -y mosquitto mosquitto-clients
-sudo systemctl enable mosquitto.service
-mosquitto -v
-```
+Node-RED runs on the web browser and it uses visual programming that allows you to connect code blocks, known as nodes, together to perform a task. The nodes when wired together are called flows.
 
-## 2. Abilitazione dell'accesso remoto e autenticazione
+Why is Node-RED a great solution?
+Node-RED is open source and developed by IBM.
+The Raspberry Pi runs Node-RED perfectly.
+It is a visual programming tool, which makes it more accessible to a wider range of users.
+With Node-RED you can spend more time making cool stuff, rather than spending countless hours writing code.
+What can you do with Node-RED?
+Node-RED makes it easy to:
 
-Aprire il file mosquitto.conf con l'editor preferito:
+Access your RPi GPIOs;
+Establish an MQTT connection with other devices (Arduino, ESP8266, ESP32 etc);
+Create a responsive graphical user interface for your projects;
+Communicate with third-party services (IFTTT.com, Adafruit.io, ThingSpeak, Home Assistant, InfluxDB etc);
+Retrieve data from the web (weather forecast, stock prices, emails. etc);
+Create time-triggered events;
+Store and retrieve data from a database.
 
-```
-sudo vim /etc/mosquitto/mosquitto.conf
-```
+![Node-RED](./images/home_automation_example.png)  
+*Node-RED*
 
-e incollare quanto segue:
+Puoi approfondire ulteriormente [qui](https://mosquitto.org/) e trovare degli esempi di utilizzo [qui](https://flows.nodered.org/).
 
-```
-listener 1883
-allow_anonymous true
-```
-
-Eseguire il comando seguente sostituendo YOUR_USERNAME con il nome dell'utente che utilizzato per loggarsi e memorizzare nome utente e password:
-
-```
-sudo mosquitto_passwd -c /etc/mosquitto/passwd YOUR_USERNAME
-```
-
-Aprire il file mosquitto.conf con l'editor preferito:
-
-```
-sudo vim /etc/mosquitto/mosquitto.conf
-```
-
-e aggiungere la riga seguente all'inizio del file per permettere solo connessioni autenticate:
-
-```
-per_listener_settings true
-```
-
-e le righe seguenti alla fine del file:
-
-```
-allow_anonymous false
-listener 1883
-password_file /etc/mosquitto/passwd
-```
-
-Infine riavviare Mosquitto:
-
-```
-sudo systemctl restart mosquitto
-```
-## 3. Installazione di Node-RED su Raspberry Pi
+## 1. Installazione di Node-RED su Raspberry Pi
 
 Lanciare il seguente comando da terminale:
 
@@ -73,13 +43,13 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 
 e a installazione finita vi troverete di fronte ad una schermata simile a quella seguente:
 
-![NodeRED Install](./images/nodered_install.png)
+![Node-RED Install](./images/nodered_install.png)
 
-Successivamente sarà necessario configurare NodeRED come impostando nome utente e passphrase e confermando le impostazioni di default delle altre voci:
+Successivamente sarà necessario configurare Node-RED come impostando nome utente e passphrase e confermando le impostazioni di default delle altre voci:
 
-![NodeRED Config](./images/nodered_config.png)
+![Node-RED Config](./images/nodered_config.png)
 
-Ora possiamo avviare NodeRED per verificare che l'installazione e la configurazione siano state eseguite correttamente. Lanciando da terminale il comando
+Ora possiamo avviare Node-RED per verificare che l'installazione e la configurazione siano state eseguite correttamente. Lanciando da terminale il comando
 
 ```
 node-red-start
@@ -87,9 +57,9 @@ node-red-start
 
 dovremmo trovarci di fronte ad una schermata simile a questa:
 
-![NodeRED Start](./images/nodered_start.png)
+![Node-RED Start](./images/nodered_start.png)
 
-Infine abilitiamo il servizio di NodeRED in modo che si avvii in automatico all'accensione del Raspberry Pi:
+Infine abilitiamo il servizio di Node-RED in modo che si avvii in automatico all'accensione del Raspberry Pi:
 
 ```
 sudo systemctl enable nodered
