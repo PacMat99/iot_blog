@@ -8,25 +8,23 @@ nav_order: 4
 
 ## 0. Cos'è Node-RED
 
-Node-RED is a powerful open-source tool for building Internet of Things (IoT) applications with the goal of simplifying the programming component.
+Node-RED è un potente strumento open source ideato con lo scopo di semplificare la costruzione di applicazioni IoT.
 
-Node-RED runs on the web browser and it uses visual programming that allows you to connect code blocks, known as nodes, together to perform a task. The nodes when wired together are called flows.
+Node-RED è fruibile tramite browser e tramite il visual programming permette di collegare blocchi di codice - *nodes* - per eseguire uno o più task. Più nodes collegati insieme sono detti flows.
 
-Why is Node-RED a great solution?
-Node-RED is open source and developed by IBM.
-The Raspberry Pi runs Node-RED perfectly.
-It is a visual programming tool, which makes it more accessible to a wider range of users.
-With Node-RED you can spend more time making cool stuff, rather than spending countless hours writing code.
-What can you do with Node-RED?
-Node-RED makes it easy to:
+### Perché Node-RED è un'ottima soluzione?
 
-Access your RPi GPIOs;
-Establish an MQTT connection with other devices (Arduino, ESP8266, ESP32 etc);
-Create a responsive graphical user interface for your projects;
-Communicate with third-party services (IFTTT.com, Adafruit.io, ThingSpeak, Home Assistant, InfluxDB etc);
-Retrieve data from the web (weather forecast, stock prices, emails. etc);
-Create time-triggered events;
-Store and retrieve data from a database.
+1. Node-RED è open source
+2. Gira perfettamente su un Raspberry Pi
+3. Essendo un tool di programmazione visuale, quindi è facilmente utilizzabile anche da utenti non esperti
+
+### Cosa puoi fare con Node-RED?
+
+1. Accedere al GPIO del tuo Raspberry Pi 
+2. Stabilire una connessione MQTT con altri dispositivi
+3. Creare in modo semplice un'interfaccia grafica per i tuoi progetti
+4. Comunicare con servizi di terze parti
+5. Molto altro!
 
 ![Node-RED](./images/home_automation_example.png)  
 *Node-RED*
@@ -64,5 +62,56 @@ Infine abilitiamo il servizio di Node-RED in modo che si avvii in automatico all
 ```
 sudo systemctl enable nodered
 ```
+
+## 2. Collegarsi alla Dashboard di Node-RED
+
+Una volta installato Node-RED non rimane che configurare la Dashboard per visualizzare i dati che il Raspberry Pi riceverà dal nostro ESPx.
+
+Iniziamo collegandoci dal browser all'indirizzo ip con porta 1880 del Raspberry Pi.  
+Esempio:
+
+```
+192.168.68.101:1880
+```
+
+![Node-RED URL](./images/nodered_url.png)
+
+Se non si conosce l'indirizzo ip del nostro Raspberry Pi è possibile trovarlo eseguendo il seguente comando:
+
+```
+hostname -I
+```
+
+![Node-RED ip address](./images/hostname_i.png)
+
+A questo punto dovresti trovarti di fronte ad una schermata di login simile alla seguente:
+
+![Node-RED login](./images/nodered_login.png)
+
+## 3. Configurare la Dashboard di Node-RED
+
+Una volta eseguito il login si arriva all'interfaccia di Node-RED.
+
+![Node-RED login](./images/nodered_interface.png)
+
+### Nodes
+
+Nella sidebar a sinistra è possibile vedere una lista di blocchi chiamati *nodi* e suddivisi per funzionalità.  
+I nodi hanno porte di input e/o di output per ricevere e inviare informazioni ad altri nodi precedenti o successivi.
+
+### Flow
+The nodes are the building blocks of a flow. You wire nodes together to create a flow that will perform a certain task. A Flow is also a tab in the workspace where you place and organize the nodes.
+
+In the center, you have the Flow and this is where you place the nodes.
+
+### Right Sidebar
+The sidebar at the right has several tools.
+
+Information: shows information about the flows;
+Help: shows the nodes’ documentation;
+Debug: the bug icon opens a debugging window that shows messages passed to debug nodes—it’s useful for debugging purposes;
+Config nodes: the gear icon shows information about configuration nodes. Configuration nodes do not appear on the main workspace, and they are special nodes that hold reusable configurations that can be shared by several nodes in a flow.
+Deploy
+The deploy button saves all changes made to the flow and starts running the flow.
 
 Avanti al [prossimo step](./index.html)! :)
