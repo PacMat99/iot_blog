@@ -8,25 +8,23 @@ nav_order: 4
 
 ## 0. Cos'è Node-RED
 
-Node-RED is a powerful open-source tool for building Internet of Things (IoT) applications with the goal of simplifying the programming component.
+Node-RED è un potente strumento open source ideato con lo scopo di semplificare la costruzione di applicazioni IoT.
 
-Node-RED runs on the web browser and it uses visual programming that allows you to connect code blocks, known as nodes, together to perform a task. The nodes when wired together are called flows.
+Node-RED è fruibile tramite browser e tramite il visual programming permette di collegare blocchi di codice - *nodes* - per eseguire uno o più task. Più nodes collegati insieme sono detti flows.
 
-Why is Node-RED a great solution?
-Node-RED is open source and developed by IBM.
-The Raspberry Pi runs Node-RED perfectly.
-It is a visual programming tool, which makes it more accessible to a wider range of users.
-With Node-RED you can spend more time making cool stuff, rather than spending countless hours writing code.
-What can you do with Node-RED?
-Node-RED makes it easy to:
+### Perché Node-RED è un'ottima soluzione?
 
-Access your RPi GPIOs;
-Establish an MQTT connection with other devices (Arduino, ESP8266, ESP32 etc);
-Create a responsive graphical user interface for your projects;
-Communicate with third-party services (IFTTT.com, Adafruit.io, ThingSpeak, Home Assistant, InfluxDB etc);
-Retrieve data from the web (weather forecast, stock prices, emails. etc);
-Create time-triggered events;
-Store and retrieve data from a database.
+1. Node-RED è open source
+2. Gira perfettamente su un Raspberry Pi
+3. Essendo un tool di programmazione visuale, quindi è facilmente utilizzabile anche da utenti non esperti
+
+### Cosa puoi fare con Node-RED?
+
+1. Accedere al GPIO del tuo Raspberry Pi 
+2. Stabilire una connessione MQTT con altri dispositivi
+3. Creare in modo semplice un'interfaccia grafica per i tuoi progetti
+4. Comunicare con servizi di terze parti
+5. Molto altro!
 
 ![Node-RED](./images/home_automation_example.png)  
 *Node-RED*
@@ -41,7 +39,8 @@ Lanciare il seguente comando da terminale:
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
 
-e a installazione finita vi troverete di fronte ad una schermata simile a quella seguente:
+rispondere y alle prime due domande che avvieranno l'installazione.  
+A installazione finita vi troverete di fronte ad una schermata simile a quella seguente:
 
 ![Node-RED Install](./images/nodered_install.png)
 
@@ -65,4 +64,4 @@ Infine abilitiamo il servizio di Node-RED in modo che si avvii in automatico all
 sudo systemctl enable nodered
 ```
 
-Avanti al [prossimo step](./index.html)! :)
+Avanti al [prossimo step](./nodered_config.html)! :)

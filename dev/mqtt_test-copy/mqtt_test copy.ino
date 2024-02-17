@@ -1,14 +1,14 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid = "Pac's wifi_EXT";
-const char* password = "Guglielmo06121937gp";
+const char* ssid = "WIFI_SSID";
+const char* password = "WIFI_PASSWORD";
 
-const char* mqtt_server = "192.168.68.100";
+const char* mqtt_server = "MQTT_SERVER_IP";
 
 // MQTT broker credentials
-const char* MQTT_username = "pacmat";
-const char* MQTT_password = "Mattia2102";
+const char* MQTT_username = "MQTT_USERNAME";
+const char* MQTT_password = "MQTT_PASSWORD";
 
 // Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
 WiFiClient espClient;
@@ -18,8 +18,8 @@ PubSubClient client(espClient);
 long now = millis();
 long lastMeasure = 0;
 
-int pm2_5 = 1;
-int pm10 = 2;
+int pm2_5 = 10;
+int pm10 = 80;
 
 // Don't change the function below. This functions connects your ESP8266 to your router
 void setup_wifi() {
@@ -61,10 +61,9 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client", MQTT_username, MQTT_password)) {
+    if (client.connect("ESP8266Client")) {
       Serial.println("connected");
-    }
-    else {
+    } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
@@ -82,6 +81,7 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+
 }
 
 // For this project, you don't need to change anything in the loop function. Basically it ensures that you ESP is connected to your broker

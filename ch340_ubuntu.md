@@ -1,7 +1,7 @@
 ---
 title: CH340 driver
 layout: default
-nav_order: 6
+nav_order: 8
 ---
 
 # Installare i driver su Ubuntu per il chip CH340

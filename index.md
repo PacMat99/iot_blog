@@ -38,7 +38,11 @@ Creare lo schema elettrico mostrato nel [test](./tests/sds011_display_test.html)
 
 Installare Mosquitto sul Raspberry Pi come indicato in ["Setup Mosquitto"](./mosquitto_setup.html).
 
-## 6. Installare Node-RED su Raspberry Pi
+## 6. Installare Node-RED su Raspberry Pi e configurare la Dashboard
+
+Installare Node-RED sul Raspberry Pi come indicato in ["Setup Node-RED"](./nodered_setup.html).
+
+## 7. Installare e configurare un DB MySQL
 
 Installare Node-RED sul Raspberry Pi come indicato in ["Setup Node-RED"](./nodered_setup.html).
 
