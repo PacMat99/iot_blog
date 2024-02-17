@@ -6,48 +6,45 @@ nav_order: 7
 
 # Setup di Node-RED su Raspberry Pi
 
-## 0. Cos'è Node-RED
+## 1. Configurare un LAMP (Linux, Apache, MySQL, PHP) Server
 
-## 1. Installazione di Node-RED su Raspberry Pi
+### Aggiornare il sistema
 
-sudo apt update
-sudo apt upgrade
-sudo apt install mariadb-server
+```
+sudo apt update && upgrade -y
+```
 
+### Installare Apache e PHP
 
-With the MySQL server software installed on the Raspberry Pi, we will now need to secure it by setting a password for the “root” user.
+```
+sudo apt install apache2 php
+```
 
-By default, MySQL is installed without any password configured, meaning you can access the MySQL server without any authentication.
+### Installare MariaDB e il supporto a MySQL per PHP
 
-Run the following command to begin the MySQL securing process.
+```
+sudo apt install mariadb-server php-mysql
+```
 
-sudo mysql_secure_installation
-Copy
-Just follow the prompts to set a password for the root user and to secure your MySQL installation.
+### Installare phpMyAdmin.  
 
-For a more secure installation, you should answer “Y” to all prompts when asked to answer “Y” or “N“.
+```
+sudo apt install phpmyadmin
+```
 
-These prompts will remove features that allows someone to gain access to the server easier.
+Durante l'installazione viene richiesto qualce web server deve essere configurato per l'esecuzione di phpMyAdmin: selezionare apache2 con la barra spaziatrice e premere invio per confermare.
 
-Make sure you write down the password you set during this process as we will need to use it to access the MySQL server and create databases and users for software such as WordPress or PHPMyAdmin.
+A fine installazione confermare la configurazione automatica del DB con dbconfig-common.
 
-4. Now, if you want to access your Raspberry Pi’s MySQL server and start making changes to your databases, you can enter the following command.
+Infine, abilitare l'avvio automatico di MariaDB all'avvio, l'estensione PHP MySQLi e riavviare Apache2 coi seguenti comandi:
 
-sudo mysql -u root -p
-Copy
-5. You will be prompted to enter the password that we just created in step 3 for MySQL’s root user.
+```
+sudo systemctl enable mariadb
+sudo phpenmod mysqli
+sudo service apache2 restart
+```
 
-Note: Like most Linux password inputs, the text will not appear as you type.
-
-6. You can now enter MYSQL commands to create, alter, and delete databases. Through this interface, you can also create or delete users and assign them the rights to manage any database.
-
-7. There are two different ways you can quit out of the MYSQL command line. The first of those is to type “quit;” into the MySQL interface.
-
-The other way of quitting out of the MYSQL command line is to press CTRL + D.
-
-8. At this point, you will now have successfully set up MySQL on your Raspberry Pi. Our next few sections will go into making better use of this database.
-
-
+## 2. Creare un utente e un DB MySQL
 
 Creating a MySQL Database and User
 1. Before we proceed to create a MySQL user and database on our Raspberry Pi, we must first log back into the MySQL command-line tool.
@@ -81,12 +78,3 @@ Copy
 We can do this by running the following command.
 
 FLUSH PRIVILEGES;
-
-
-
-
-enable mariadb at startup
-
-
-
-sudo systemctl enable mariadb

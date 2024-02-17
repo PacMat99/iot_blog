@@ -1,6 +1,6 @@
 [
     {
-        "id": "d84e0d8ecbf59b72",
+        "id": "6b68b0b6532ae730",
         "type": "tab",
         "label": "Flow 1",
         "disabled": false,
@@ -8,66 +8,20 @@
         "env": []
     },
     {
-        "id": "e39368bb39c2c612",
-        "type": "inject",
-        "z": "d84e0d8ecbf59b72",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Hello",
-        "payloadType": "str",
-        "x": 170,
-        "y": 280,
-        "wires": [
-            [
-                "80a327e48ca3546d"
-            ]
-        ]
-    },
-    {
-        "id": "80a327e48ca3546d",
-        "type": "debug",
-        "z": "d84e0d8ecbf59b72",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "1b3f7e9676d50f56",
+        "id": "d75343ba8ffbdddd",
         "type": "ui_gauge",
-        "z": "d84e0d8ecbf59b72",
+        "z": "6b68b0b6532ae730",
         "name": "PM2.5 Real Time",
         "group": "4686a016b3103968",
         "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "gauge",
+        "title": "PM2.5 Real Time",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "10",
+        "max": "25",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -82,15 +36,15 @@
         "wires": []
     },
     {
-        "id": "3e68c335dc702b1c",
+        "id": "3be7fa3279d73c45",
         "type": "ui_chart",
-        "z": "d84e0d8ecbf59b72",
+        "z": "6b68b0b6532ae730",
         "name": "PM2.5 Last Day",
         "group": "4686a016b3103968",
         "order": 3,
         "width": 0,
         "height": 0,
-        "label": "chart",
+        "label": "PM2.5 Last Day",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -120,66 +74,26 @@
         "useDifferentColor": false,
         "className": "",
         "x": 360,
-        "y": 560,
+        "y": 520,
         "wires": [
             []
         ]
     },
     {
-        "id": "a2dab5c2b048bde8",
-        "type": "ui_date_picker",
-        "z": "d84e0d8ecbf59b72",
-        "name": "Date",
-        "label": "Date",
-        "group": "4686a016b3103968",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "topic": "topic",
-        "topicType": "msg",
-        "className": "",
-        "x": 350,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2b18d019f02e4f8f",
-        "type": "ui_date_picker",
-        "z": "d84e0d8ecbf59b72",
-        "name": "Date",
-        "label": "Date",
-        "group": "f9960e43f15ff980",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "topic": "topic",
-        "topicType": "msg",
-        "className": "",
-        "x": 570,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "977788231326dec3",
+        "id": "f03fc53e99b4c1e0",
         "type": "ui_gauge",
-        "z": "d84e0d8ecbf59b72",
+        "z": "6b68b0b6532ae730",
         "name": "PM10 Real Time",
         "group": "f9960e43f15ff980",
         "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "gauge",
+        "title": "PM10 Real Time",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "20",
+        "max": "30",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -189,20 +103,20 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 620,
-        "y": 900,
+        "x": 360,
+        "y": 600,
         "wires": []
     },
     {
-        "id": "1c015f0c4609cd8a",
+        "id": "6665a9d561dc3394",
         "type": "ui_chart",
-        "z": "d84e0d8ecbf59b72",
+        "z": "6b68b0b6532ae730",
         "name": "PM10 Last Day",
         "group": "f9960e43f15ff980",
         "order": 3,
         "width": 0,
         "height": 0,
-        "label": "chart",
+        "label": "PM10 Last Day",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -231,53 +145,53 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 640,
-        "y": 960,
+        "x": 360,
+        "y": 660,
         "wires": [
             []
         ]
     },
     {
-        "id": "2f21ec72743d99d1",
+        "id": "d09c85e4445f6619",
         "type": "mqtt in",
-        "z": "d84e0d8ecbf59b72",
-        "name": "",
-        "topic": "Air Quality",
+        "z": "6b68b0b6532ae730",
+        "name": "PM2_5",
+        "topic": "air_quality_monitor/pm2_5",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "4e621ea5dbe96670",
+        "broker": "191e28f7660b3d09",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 140,
+        "x": 130,
         "y": 460,
         "wires": [
             [
-                "1b3f7e9676d50f56",
-                "3e68c335dc702b1c"
+                "d75343ba8ffbdddd",
+                "3be7fa3279d73c45"
             ]
         ]
     },
     {
-        "id": "a9bec24fa116f362",
+        "id": "a7d896147629679a",
         "type": "mqtt in",
-        "z": "d84e0d8ecbf59b72",
-        "name": "",
-        "topic": "Air Quality",
+        "z": "6b68b0b6532ae730",
+        "name": "PM10",
+        "topic": "air_quality_monitor/pm10",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "4e621ea5dbe96670",
+        "broker": "191e28f7660b3d09",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 180,
-        "y": 900,
+        "x": 130,
+        "y": 600,
         "wires": [
             [
-                "977788231326dec3",
-                "1c015f0c4609cd8a"
+                "f03fc53e99b4c1e0",
+                "6665a9d561dc3394"
             ]
         ]
     },
@@ -304,7 +218,7 @@
         "className": ""
     },
     {
-        "id": "4e621ea5dbe96670",
+        "id": "191e28f7660b3d09",
         "type": "mqtt-broker",
         "name": "Raspberry Pi",
         "broker": "localhost",

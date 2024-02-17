@@ -4,7 +4,7 @@
 const char* ssid = "Pac's wifi_EXT";
 const char* password = "Guglielmo06121937gp";
 
-const char* mqtt_server = "192.168.68.101";
+const char* mqtt_server = "192.168.68.100";
 
 // MQTT broker credentials
 const char* MQTT_username = "pacmat";

@@ -39,7 +39,8 @@ Lanciare il seguente comando da terminale:
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
 
-e a installazione finita vi troverete di fronte ad una schermata simile a quella seguente:
+rispondere y alle prime due domande che avvieranno l'installazione.  
+A installazione finita vi troverete di fronte ad una schermata simile a quella seguente:
 
 ![Node-RED Install](./images/nodered_install.png)
 
