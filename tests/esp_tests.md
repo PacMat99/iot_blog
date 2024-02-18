@@ -1,7 +1,7 @@
 ---
 title: ESPx tests
 layout: default
-nav_order: 2
+nav_order: 3
 has_children: true
 ---
 
@@ -15,3 +15,6 @@ Ad esempio potremmo procedere in quest'ordine:
 3. Provare a scrivere delle semplici frasi sul display SSD1306
 4. Scrivere sul display SSD130 i valori letti dal sensore SDS011 in modo da permetterne una visualizzazione ottimale
 5. Testare il funzionamento del WiFi dell'ESPx
+6. Testare l'invio di dati tramite MQTT
+
+Avanti al [prossimo step](../mosquitto_setup.html)! :)

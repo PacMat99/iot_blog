@@ -1,7 +1,7 @@
 ---
 title: WiFi Test
 layout: default
-nav_order: 5
+#nav_order: 5
 parent: ESPx tests
 ---
 

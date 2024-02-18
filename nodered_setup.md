@@ -1,7 +1,7 @@
 ---
 title: Setup Node-RED
 layout: default
-nav_order: 4
+nav_order: 5
 ---
 
 # Setup di Node-RED su Raspberry Pi

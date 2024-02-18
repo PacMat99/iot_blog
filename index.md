@@ -44,7 +44,7 @@ Installare Node-RED sul Raspberry Pi come indicato in ["Setup Node-RED"](./noder
 
 ## 7. Installare e configurare un DB MySQL
 
-Installare Node-RED sul Raspberry Pi come indicato in ["Setup Node-RED"](./nodered_setup.html).
+Installare e configurare un DB MySQL come indicato in ["Setup DB"](./db_setup.html).
 
 ----
 

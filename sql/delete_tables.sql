@@ -1,0 +1,3 @@
+DROP TABLE pm2_5;
+
+DROP TABLE pm10;
