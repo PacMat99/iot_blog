@@ -1,7 +1,7 @@
 ---
 title: Configurazione Node-RED
 layout: default
-nav_order: 5
+nav_order: 6
 ---
 
 # Setup di Node-RED su Raspberry Pi
@@ -63,6 +63,11 @@ Il pulsante **deploy** salva lo stato del diagramma e lo carica nella UI.
 
 ## 2. Configurare la Dashboard di Node-RED
 
-Installare node-red-dashboard e 
+Installare due nodes aggiuntivi da *Menu --> Settings --> Palette --> Install*:
+
+1. node-red-dashboard
+2. node-red-node-mysql
+
+![Additional nodes](./images/additional_nodes.png)
 
 Avanti al [prossimo step](./db_setup.html)! :)

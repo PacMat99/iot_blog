@@ -4,7 +4,7 @@ layout: default
 nav_order: 7
 ---
 
-# Setup di Node-RED su Raspberry Pi
+# Setup di un LAMP server e creazione di un DB su Raspberry Pi
 
 ## 1. Configurare un LAMP (Linux, Apache, MySQL, PHP) Server
 

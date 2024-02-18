@@ -13,7 +13,7 @@
         "z": "6b68b0b6532ae730",
         "name": "PM2.5 Real Time",
         "group": "4686a016b3103968",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -21,7 +21,7 @@
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "25",
+        "max": "45",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -41,7 +41,7 @@
         "z": "6b68b0b6532ae730",
         "name": "PM2.5 Last Day",
         "group": "4686a016b3103968",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "label": "PM2.5 Last Day",
@@ -53,9 +53,9 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": 1,
+        "removeOlder": "2",
         "removeOlderPoints": "",
-        "removeOlderUnit": "86400",
+        "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
         "useUTC": false,
@@ -85,7 +85,7 @@
         "z": "6b68b0b6532ae730",
         "name": "PM10 Real Time",
         "group": "f9960e43f15ff980",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -93,7 +93,7 @@
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "30",
+        "max": "60",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -104,7 +104,7 @@
         "diff": false,
         "className": "",
         "x": 360,
-        "y": 600,
+        "y": 660,
         "wires": []
     },
     {
@@ -113,7 +113,7 @@
         "z": "6b68b0b6532ae730",
         "name": "PM10 Last Day",
         "group": "f9960e43f15ff980",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "label": "PM10 Last Day",
@@ -125,9 +125,9 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": 1,
+        "removeOlder": "2",
         "removeOlderPoints": "",
-        "removeOlderUnit": "86400",
+        "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
         "useUTC": false,
@@ -146,7 +146,7 @@
         "useDifferentColor": false,
         "className": "",
         "x": 360,
-        "y": 660,
+        "y": 720,
         "wires": [
             []
         ]
@@ -169,7 +169,8 @@
         "wires": [
             [
                 "d75343ba8ffbdddd",
-                "3be7fa3279d73c45"
+                "3be7fa3279d73c45",
+                "c484aa39279a78f4"
             ]
         ]
     },
@@ -187,13 +188,116 @@
         "rh": 0,
         "inputs": 0,
         "x": 130,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "f03fc53e99b4c1e0",
-                "6665a9d561dc3394"
+                "6665a9d561dc3394",
+                "d15babce3b93a496"
             ]
         ]
+    },
+    {
+        "id": "acf137e045716fde",
+        "type": "mysql",
+        "z": "6b68b0b6532ae730",
+        "mydb": "695d8cf2ba121568",
+        "name": "",
+        "x": 550,
+        "y": 580,
+        "wires": [
+            [
+                "1d871e38abdcd09c"
+            ]
+        ]
+    },
+    {
+        "id": "da2395f69c5f4cbb",
+        "type": "mysql",
+        "z": "6b68b0b6532ae730",
+        "mydb": "695d8cf2ba121568",
+        "name": "",
+        "x": 550,
+        "y": 780,
+        "wires": [
+            [
+                "c866633f34714b57"
+            ]
+        ]
+    },
+    {
+        "id": "c484aa39279a78f4",
+        "type": "function",
+        "z": "6b68b0b6532ae730",
+        "name": "Insert PM2_5",
+        "func": "msg.topic = \"INSERT INTO pm2_5 (Valore) VALUES(\" + msg.payload + \"); \"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "acf137e045716fde"
+            ]
+        ]
+    },
+    {
+        "id": "1d871e38abdcd09c",
+        "type": "debug",
+        "z": "6b68b0b6532ae730",
+        "name": "debug pm2_5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "d15babce3b93a496",
+        "type": "function",
+        "z": "6b68b0b6532ae730",
+        "name": "Insert PM10",
+        "func": "msg.topic = \"INSERT INTO pm10 (Valore) VALUES(\" + msg.payload + \"); \"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 780,
+        "wires": [
+            [
+                "da2395f69c5f4cbb"
+            ]
+        ]
+    },
+    {
+        "id": "c866633f34714b57",
+        "type": "debug",
+        "z": "6b68b0b6532ae730",
+        "name": "debug pm10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 780,
+        "wires": []
     },
     {
         "id": "4686a016b3103968",
@@ -247,6 +351,16 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "695d8cf2ba121568",
+        "type": "MySQLdatabase",
+        "name": "NodeRedDB",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "NodeRedDB",
+        "tz": "",
+        "charset": "UTF8"
     },
     {
         "id": "d0ba01c7dfdd6ee5",
