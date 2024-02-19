@@ -42,9 +42,17 @@ Installare Mosquitto sul Raspberry Pi come indicato in ["Setup Mosquitto"](./mos
 
 Installare Node-RED sul Raspberry Pi come indicato in ["Setup Node-RED"](./nodered_setup.html).
 
-## 7. Installare e configurare un DB MySQL
+## 7. Configurare la Dashboard di Node-RED su Raspberry Pi
+
+Configurare la Dashboard di Node-RED su Raspberry Picome indicato in ["Configurazione Node-RED"](./nodered_config.html).
+
+## 8. Installare e configurare un DB MySQL
 
 Installare e configurare un DB MySQL come indicato in ["Setup DB"](./db_setup.html).
+
+## 9. Creare il Flow Chart in Node-RED
+
+Prendere dimistichezza con l'interfaccia di Node-RED e creare il Flow Chart complessivo come indicato in ["Node-RED Flow Chart"](./nodered_flow_chart.html).
 
 ----
 
