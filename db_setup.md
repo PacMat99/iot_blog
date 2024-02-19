@@ -32,7 +32,7 @@ sudo apt install mariadb-server php-mysql
 sudo apt install phpmyadmin
 ```
 
-Durante l'installazione viene richiesto qualce web server deve essere configurato per l'esecuzione di phpMyAdmin: selezionare apache2 con la barra spaziatrice e premere invio per confermare.
+Durante l'installazione viene richiesto quale web server deve essere configurato per l'esecuzione di phpMyAdmin: selezionare apache2 con la barra spaziatrice e premere invio per confermare.
 
 A fine installazione confermare la configurazione automatica del DB con dbconfig-common.
 
@@ -46,35 +46,66 @@ sudo service apache2 restart
 
 ## 2. Creare un utente e un DB MySQL
 
-Creating a MySQL Database and User
-1. Before we proceed to create a MySQL user and database on our Raspberry Pi, we must first log back into the MySQL command-line tool.
+Creiamo un database e un utente secondario per la gestione. Per farlo utilizziamo MySQL da terminale.
 
-Run the following command to log in to the MySQL command line. You will be prompted to enter the password for the “root” account that you set up earlier.
+Eseguiamo il login con l'utente *root* inserendo la password scelta durante l'installazione:
 
+```
 sudo mysql -u root -p
-Copy
-2. Let’s start by creating a MySQL database using the following command.
+```
 
-This command is super simple and is just “CREATE DATABASE” followed by the name that you want to give the database.
+Una volta loggati creiamo un database con nome *"testdb"*
 
-In our example, we will be calling this database “exampledb“.
+```
+CREATE DATABASE testdb;
+```
 
-CREATE DATABASE exampledb;
-Copy
-3. Next, we will create a MySQL user that we will assign to our new database. We can create this user by running the following command.
+e un utente che in questo esempio avrà nome *"topuser"* e password *"secretpassword"*. Assicurarsi di modificare il nome utente e la password prima della creazione dell'utente.
 
-For this example, we will be calling the user “exampleuser” and giving it the password “pimylifeup“. When creating your own, make sure you replace both of these.
+```
+CREATE USER 'topuser'@'localhost' IDENTIFIED BY 'secretpassword';
+```
 
-CREATE USER 'exampleuser'@'localhost' IDENTIFIED BY 'pimylifeup';
-Copy
-4. With the user created, we can now go ahead and grant all privileges to the user so that it can interact with the database.
+Una volta creato l'utente è necesssario concedergli tutti i permessi per tutte le tabelle nel DB
 
-This command will grant all permissions to our “exampleuser” for all tables within our “exampledb” database.
+```
+GRANT ALL PRIVILEGES ON testdb.* TO 'topuser'@'localhost';
+```
 
-GRANT ALL PRIVILEGES ON exampledb.* TO 'exampleuser'@'localhost';
-Copy
-5. The final thing we need to do for both our MySQL database and user to be finalized is to flush the privilege table. Without flushing the privilege table, the new user won’t be able to access the database.
+e infine salvare i privilegi appena concessi.
 
-We can do this by running the following command.
-
+```
 FLUSH PRIVILEGES;
+```
+
+## 3. Creare le tabelle nel DB
+
+Non resta che creare le tabelle che ci permetteranno di memorizzare i dati ricevuti dall'ESPx.
+
+Per farlo colleghiamoci a phpmyadmin dal browser
+
+```
+raspberryip/phpmyadmin
+```
+
+e dal tab SQL lanciamo le query seguenti per creare le tabelle.
+
+```
+CREATE TABLE pm2_5 (
+    id INT NOT NULL AUTO_INCREMENT,
+    valore FLOAT NOT NULL,
+    orario TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE pm10 (
+    id INT NOT NULL AUTO_INCREMENT,
+    valore FLOAT NOT NULL,
+    orario TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+```
+
+![Create Table](./images/create_table.png)
+
+Avanti al [prossimo step](./nodered_flow_chart.html)! :)
