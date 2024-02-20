@@ -1,13 +1,14 @@
 ---
 title: Led Test
 layout: default
-#nav_order: 1
-parent: ESPx tests
+nav_order: 1
+parent: ESP8266
+grand_parent: ESPx tests
 ---
 
-# Test del led integrato dell'ESPx
+# Test del led integrato dell'ESP8266
 
-Collegare l'ESPx al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP8266 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore. Il led integrato dovrebbe lampeggiare.
 
 ```
 void setup() {
@@ -24,5 +25,3 @@ void loop() {
     delay(2000);                      // Wait for two seconds (to demonstrate the active low LED)
 }
 ```
-
-Vedi [tutti i test](./esp_tests.html)! :)

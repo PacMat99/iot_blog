@@ -1,8 +1,9 @@
 ---
 title: SDS011 Test
 layout: default
-#nav_order: 2
-parent: ESPx tests
+nav_order: 2
+parent: ESP8266
+grand_parent: ESPx tests
 ---
 
 # Test del sensore SDS011
@@ -11,17 +12,19 @@ parent: ESPx tests
 
 Collegare i pin del sensore SDS011 come segue:
 
-1. 5V --> Vin ESPx
-2. GND --> GND ESPx
-3. RXD --> D6 ESPx
-4. TXD --> D5 ESPx
+*ESP8266*
 
-![SDS011 Wiring Diagram](../images/sds011_wiring_diagram.png)  
-*SDS011 Wiring Diagram*
+1. 5V --> Vin ESP8266
+2. GND --> GND ESP8266
+3. RXD --> D6 ESP8266
+4. TXD --> D5 ESP8266
+
+![SDS011 Wiring Diagram](../../images/esp8266_sds011_wiring_diagram.png)  
+*ESP8266 SDS011 Wiring Diagram*
 
 ## 2. Eseguire il codice
 
-Collegare l'ESPx al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP8266 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
 
 ```
 #include <SoftwareSerial.h>
@@ -74,5 +77,3 @@ void loop() {
     delay(1000);  // Delay before the next read to avoid flooding the serial
 }
 ```
-
-Vedi [tutti i test](./esp_tests.html)! :)

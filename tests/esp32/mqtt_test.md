@@ -1,8 +1,9 @@
 ---
 title: MQTT Test
 layout: default
-#nav_order: 6
-parent: ESPx tests
+nav_order: 6
+parent: ESP32
+grand_parent: ESPx tests
 ---
 
 # Test invio dati con MQTT
@@ -16,10 +17,10 @@ Copiare il codice seguente in un file nell'Arduino IDE e sostituire i seguenti c
 5. MQTT_PASSWORD
 6. TOPIC
 
-Quindi collegare l'ESPx al pc e caricare il codice sul microcontrollore.
+Quindi collegare l'ESP32 al pc e caricare il codice sul microcontrollore.
 
 ```
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <PubSubClient.h>
 
 const char* ssid = "SSID";
@@ -35,7 +36,7 @@ const char* MQTT_password = "MQTT_PASSWORD";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-// Don't change the function below. This functions connects your ESP8266 to your router
+// Don't change the function below. This functions connects your ESP32 to your router
 void setup_wifi() {
   delay(10);
   // We start by connecting to a WiFi network
@@ -52,9 +53,9 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
-// This functions is executed when some device publishes a message to a topic that your ESP8266 is subscribed to
+// This functions is executed when some device publishes a message to a topic that your ESP32 is subscribed to
 // Change the function below to add logic to your program, so when a device publishes a message to a topic that 
-// your ESP8266 is subscribed you can actually do something
+// your ESP32 is subscribed you can actually do something
 void callback(String topic, byte* message, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
@@ -68,14 +69,14 @@ void callback(String topic, byte* message, unsigned int length) {
   Serial.println();
 }
 
-// This functions reconnects your ESP8266 to your MQTT broker
-// Change the function below if you want to subscribe to more topics with your ESP8266 
+// This functions reconnects your ESP32 to your MQTT broker
+// Change the function below if you want to subscribe to more topics with your ESP32
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client", MQTT_username, MQTT_password)) {
+    if (client.connect("ESP32Client", MQTT_username, MQTT_password)) {
       Serial.println("connected");
     }
     else {
@@ -105,12 +106,10 @@ void loop() {
     reconnect();
   }
   if(!client.loop()) {
-    client.connect("ESP8266Client", MQTT_username, MQTT_password);
+    client.connect("ESP32Client", MQTT_username, MQTT_password);
 
     client.publish("TOPIC", String(5).c_str());
     client.publish("TOPIC", String(6).c_str());
   }
 }
 ```
-
-Vedi [tutti i test](./esp_tests.html)! :)
