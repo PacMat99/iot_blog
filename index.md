@@ -32,7 +32,7 @@ Se vuoi saperne di più su come eseguire questi test, trovi diverse info [qui](.
 
 ## 4. Creare lo schema elettrico
 
-Creare lo schema elettrico mostrato nel [test](./tests/sds011_display_test.html) di ESPx, display SDS011 e display SSD1306.
+Creare lo schema elettrico mostrato nei [test](./tests/esp_tests.html) di ESPx, display SDS011 e display SSD1306.
 
 ## 5. Installare Mosquitto su Raspberry Pi
 

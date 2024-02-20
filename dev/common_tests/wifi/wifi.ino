@@ -1,16 +1,9 @@
----
-title: WiFi Test
-layout: default
-#nav_order: 5
-parent: ESPx tests
----
-
-# Test del modulo WiFi dell'ESPx
-
-Collegare l'ESPx al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
-
-```
-#include "WiFi.h"
+/*
+ *  This sketch demonstrates how to scan WiFi networks.
+ *  The API is based on the Arduino WiFi Shield library, but has significant changes as newer WiFi functions are supported.
+ *  E.g. the return value of `encryptionType()` different because more modern encryption is supported.
+ */
+#include <WiFi.h>
 
 void setup()
 {
@@ -91,6 +84,3 @@ void loop()
     // Wait a bit before scanning again.
     delay(5000);
 }
-```
-
-Vedi [tutti i test](./esp_tests.html)! :)

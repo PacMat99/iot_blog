@@ -1,8 +1,9 @@
 ---
 title: SDS011 and display Test
 layout: default
-#nav_order: 4
-parent: ESPx tests
+nav_order: 4
+parent: ESP32
+grand_parent: ESPx tests
 ---
 
 # Test del display SSD1306
@@ -11,33 +12,35 @@ parent: ESPx tests
 
 Collegare i pin del sensore SDS011 come segue:
 
-1. 5V --> Vin ESPx
-2. GND --> GND ESPx
-3. RXD --> D6 ESPx
-4. TXD --> D5 ESPx
+1. 5V --> Vin ESP32
+2. GND --> GND ESP32
+3. RXD --> TX2 ESP32
+4. TXD --> RX2 ESP32
 
 Collegare i pin del display SSD1306 come segue:
 
-1. VDD --> 3.3V ESPx
-2. GND --> GND ESPx
-3. SDA --> D2 ESPx
-4. SCL --> D1 ESPx
+1. VDD --> 3.3V ESP32
+2. GND --> GND ESP32
+3. SDA --> D21 ESP32
+4. SCL --> D22 ESP32
 
-![Wiring Diagram](../images/wiring_diagram.png)  
-*Wiring Diagram*
+![ESP32 Wiring Diagram](../../images/esp32_wiring_diagram.png)  
+*ESP32 Wiring Diagram*
 
 ## 2. Installazione delle librerie
 
 Installare le seguenti librerie nell'Arduino IDE:
 
 1. Adafruit GFX Library by *Adafruit*  
-   ![Adafruit GFX Library](../images/gfx_library.png)  
+   ![Adafruit GFX Library](../../images/gfx_library.png)  
 2. Adafruit SSD1306 by *Adafruit*  
-   ![Adafruit SSD1306 Library](../images/ssd1306_library.png)  
+   ![Adafruit SSD1306 Library](../../images/ssd1306_library.png)  
 
 ## 3. Eseguire il codice
 
-Collegare l'ESPx al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP32 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+
+**ATTENZIONE**: modificare il codice seguente utilizzando la libreria [esp_sds011](https://github.com/dok-net/esp_sds011)
 
 ```
 // libraries for display
@@ -162,5 +165,3 @@ void loop() {
     delay(5000);
 }
 ```
-
-Vedi [tutti i test](./esp_tests.html)! :)
