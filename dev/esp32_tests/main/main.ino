@@ -1,48 +1,6 @@
----
-title: SDS011 and display Test
-layout: default
-nav_order: 4
-parent: ESP32
-grand_parent: ESPx tests
----
+// sds011 code explanation
+// https://electronicsinnovation.com/interfacing-sds011-air-quality-sensor-with-esp8266-diy-air-pollution-monitor-part1/
 
-# Test del display SSD1306
-
-## 1. Creare il seguente schema elettrico
-
-Collegare i pin del sensore SDS011 come segue:
-
-1. 5V --> Vin ESP32
-2. GND --> GND ESP32
-3. RXD --> TX2 ESP32
-4. TXD --> RX2 ESP32
-
-Collegare i pin del display SSD1306 come segue:
-
-1. 5V --> Vin ESP32
-2. GND --> GND ESP32
-3. RXD --> TX2 ESP32 (GPIO17)
-4. TXD --> RX2 ESP32 (GPIO16)
-
-![ESP32 Wiring Diagram](../../images/esp32_wiring_diagram.png)  
-*ESP32 Wiring Diagram*
-
-## 2. Installazione delle librerie
-
-Installare le seguenti librerie nell'Arduino IDE:
-
-1. Adafruit GFX Library by *Adafruit*  
-   ![Adafruit GFX Library](../../images/gfx_library.png)  
-2. Adafruit SSD1306 by *Adafruit*  
-   ![Adafruit SSD1306 Library](../../images/ssd1306_library.png)  
-3. esp_sds011 by *Dirk O. Kaar*  
-   ![SDS011 Library](../../images/sds011_library.png)
-
-## 3. Eseguire il codice
-
-Collegare l'ESP32 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
-
-```
 // libraries for display
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -52,6 +10,10 @@ Collegare l'ESP32 al pc, copiare il codice seguente in un file nell'Arduino IDE 
 // libraries for SDS011
 #include <SoftwareSerial.h>
 #include <esp_sds011.h>
+
+// libraries for MQTT
+#include <WiFi.h>
+#include <PubSubClient.h>
 
 // SDS011 global variables
 #define SDS_PIN_RX 16
@@ -101,6 +63,75 @@ void stop_SDS() {
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+// MQTT global variables
+const char* ssid = "SSID";
+const char* password = "PASSWORD";
+
+const char* mqtt_server = "IP_ADDRESS";
+
+// MQTT broker credentials
+const char* MQTT_username = "USERNAME";
+const char* MQTT_password = "MQTT_PASSWORD";
+
+// Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+// MQTT auxiliary functions
+
+// Don't change the function below. This functions connects your ESP8266 to your router
+void setup_wifi() {
+  delay(10);
+  // We start by connecting to a WiFi network
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("WiFi connected - ESP IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+// This functions is executed when some device publishes a message to a topic that your ESP8266 is subscribed to
+// Change the function below to add logic to your program, so when a device publishes a message to a topic that 
+// your ESP8266 is subscribed you can actually do something
+void callback(String topic, byte* message, unsigned int length) {
+  Serial.print("Message arrived on topic: ");
+  Serial.print(topic);
+  Serial.print(". Message: ");
+  String messageTemp;
+  
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)message[i]);
+    messageTemp += (char)message[i];
+  }
+  Serial.println();
+}
+
+// This functions reconnects your ESP8266 to your MQTT broker
+// Change the function below if you want to subscribe to more topics with your ESP8266 
+void reconnect() {
+  // Loop until we're reconnected
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    // Attempt to connect
+    if (client.connect("ESP8266Client", MQTT_username, MQTT_password)) {
+      Serial.println("connected");
+    }
+    else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      // Wait 5 seconds before retrying
+      delay(5000);
+    }
+  }
+}
+
 void setup() {
   // Initialize Serial communication with the computer
   Serial.begin(115200);
@@ -147,6 +178,10 @@ void setup() {
   display.setCursor(0, 10);
   display.print("Booting...");
   display.display();
+
+  setup_wifi();
+  client.setServer(mqtt_server, 1883);
+  client.setCallback(callback);
 
   delay(2000);
 }
@@ -241,6 +276,13 @@ void loop() {
   display.print(" µg/m³");
   display.display();
   delay(3000);
-}
 
-```
+  // MQTT connection and sending data to nodered
+  if (!client.connected())
+    reconnect();
+  if(!client.loop())
+    client.connect("ESP8266Client", MQTT_username, MQTT_password);
+  // Publishes pm2_5 and pm10 values    
+  client.publish("air_quality_monitor/pm2_5", pm2_5_str.c_str());
+  client.publish("air_quality_monitor/pm10", pm10_str.c_str());
+}
