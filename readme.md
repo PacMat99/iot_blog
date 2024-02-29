@@ -18,15 +18,15 @@ Y x cavetti per collegare l'ESP a periferiche esterne
 
 Configurare l'Arduino IDE e il pc affinché siano in grado di riconoscere e programmare l'ESP8266 / ESP32 come indicato in ["Setup ESP"](./esp_setup.html).
 
-## 3. Testare il corretto funzionamento dell'ESPx e di tutti i componenti collegati
+## 3. Testare il corretto funzionamento dell'ESP e di tutti i componenti collegati
 
-Per testare il corretto funzionamento dell'ESPx è consigliabile procedere per step in modo da poter isolare al meglio i singoli problemi che possiamo riscontrare.
+Per testare il corretto funzionamento dell'ESP è consigliabile procedere per step in modo da poter isolare al meglio i singoli problemi che possiamo riscontrare.
 
 Se vuoi saperne di più su come eseguire questi test, trovi diverse info [qui](./tests/esp_tests.html)
 
 ## 4. Creare lo schema elettrico
 
-Creare lo schema elettrico mostrato nel [test](./tests/sds011_display_test.html) di ESPx, display SDS011 e display SSD1306.
+Creare lo schema elettrico mostrato nel [test](./tests/sds011_display_test.html) di ESP, display SDS011 e display SSD1306.
 
 ## 5. Installare Mosquitto su Raspberry Pi
 

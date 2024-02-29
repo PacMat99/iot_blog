@@ -3,7 +3,7 @@ title: Display Test
 layout: default
 nav_order: 3
 parent: ESP8266
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
 # Test del display SSD1306

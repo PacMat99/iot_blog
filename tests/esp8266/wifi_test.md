@@ -3,7 +3,7 @@ title: WiFi Test
 layout: default
 nav_order: 5
 parent: ESP8266
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
 # Test del modulo WiFi dell'ESP8266

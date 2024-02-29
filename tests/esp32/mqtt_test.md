@@ -3,7 +3,7 @@ title: MQTT Test
 layout: default
 nav_order: 6
 parent: ESP32
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
 # Test invio dati con MQTT

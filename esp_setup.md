@@ -1,5 +1,5 @@
 ---
-title: Setup ESPx
+title: Setup ESP
 layout: default
 nav_order: 2
 ---

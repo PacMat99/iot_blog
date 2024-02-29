@@ -8,7 +8,7 @@ nav_order: 6
 
 ## 1. Collegarsi alla Dashboard di Node-RED
 
-Una volta installato Node-RED è necessario configurare la Dashboard per visualizzare i dati che il Raspberry Pi riceverà dal nostro ESPx.
+Una volta installato Node-RED è necessario configurare la Dashboard per visualizzare i dati che il Raspberry Pi riceverà dal nostro ESP.
 
 Iniziamo collegandoci dal browser all'indirizzo ip con porta 1880 del Raspberry Pi.  
 Esempio:
