@@ -3,12 +3,12 @@ title: WiFi Test
 layout: default
 nav_order: 5
 parent: ESP32
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
-# Test del modulo WiFi dell'ESPx
+# Test del modulo WiFi dell'ESP
 
-Collegare l'ESPx al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
 
 ```
 #include "WiFi.h"

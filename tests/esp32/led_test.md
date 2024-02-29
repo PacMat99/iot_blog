@@ -3,7 +3,7 @@ title: Led Test
 layout: default
 nav_order: 1
 parent: ESP32
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
 # Test del led integrato dell'ESP32

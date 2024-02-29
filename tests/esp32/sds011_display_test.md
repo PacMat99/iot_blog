@@ -3,7 +3,7 @@ title: SDS011 and display Test
 layout: default
 nav_order: 4
 parent: ESP32
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
 # Test del display SSD1306

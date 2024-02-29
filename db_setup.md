@@ -80,7 +80,7 @@ FLUSH PRIVILEGES;
 
 ## 3. Creare le tabelle nel DB
 
-Non resta che creare le tabelle che ci permetteranno di memorizzare i dati ricevuti dall'ESPx.
+Non resta che creare le tabelle che ci permetteranno di memorizzare i dati ricevuti dall'ESP.
 
 Per farlo colleghiamoci a phpmyadmin dal browser
 

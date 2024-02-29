@@ -3,7 +3,7 @@ title: SDS011 Test
 layout: default
 nav_order: 2
 parent: ESP8266
-grand_parent: ESPx tests
+grand_parent: ESP tests
 ---
 
 # Test del sensore SDS011

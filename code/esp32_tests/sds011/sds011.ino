@@ -45,7 +45,6 @@ void stop_SDS() {
   Serial.println("End sleep SDS011");
 }
 
-// The setup() function runs once each time the micro-controller starts
 void setup() {
   // Initialize Serial communication with the computer
   Serial.begin(115200);
@@ -80,10 +79,9 @@ void setup() {
   }
 }
 
-// Add the main program code into the continuous loop() function
 void loop() {
   // Per manufacturer specification, place the sensor in standby to prolong service life.
-  // At an user-determined interval (here 210s down plus 30s duty = 4m), run the sensor for 30s.
+  // At an user-determined interval (here 30s down plus 30s duty = 4m), run the sensor for 30s.
   // Quick response time is given as 10s by the manufacturer, thus the library drops the
   // measurements obtained during the first 10s of each run.
 
