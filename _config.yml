@@ -6,3 +6,10 @@ url: https://iot.pacsbrothers.com
 
 logo: "./images/logo.png"
 favicon_ico: "favicon.ico"
+
+aux_links:
+  "Instagram":
+    - "https://www.instagram.com/mattiapacchin/"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false
