@@ -3,12 +3,13 @@ title: WiFi Test
 layout: default
 nav_order: 5
 parent: ESP8266
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test del modulo WiFi dell'ESP8266
 
-Collegare l'ESP8266 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP8266 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.  
+Il codice stampa ogni 5 secondi sul display seriale le reti WiFi che l'ESP8266 rileva.
 
 ```
 #include "ESP8266WiFi.h"

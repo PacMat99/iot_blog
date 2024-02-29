@@ -3,10 +3,18 @@ title: MQTT Test
 layout: default
 nav_order: 6
 parent: ESP32
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test invio dati con MQTT
+
+## 1. Installazione delle librerie
+
+Installare la libreria PubSubClient by *Nick O'Leary* nell'Arduino IDE:
+
+![Adafruit GFX Library](../../images/arduino_ide/pubsubclient_library.png)
+
+## 2. Eseguire il codice
 
 Copiare il codice seguente in un file nell'Arduino IDE e sostituire i seguenti campi coi valori corretti:
 

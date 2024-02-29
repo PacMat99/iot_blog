@@ -9,7 +9,10 @@ favicon_ico: "favicon.ico"
 
 aux_links:
   "Instagram":
-    - "https://www.instagram.com/mattiapacchin/"
+    - "https://www.instagram.com/mattiapacchin"
+  "GitHub":
+    - "https://github.com/PacMat99/nodered_guide"
 
-# Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: false
+aux_links_new_tab: true
+
+color_scheme: light

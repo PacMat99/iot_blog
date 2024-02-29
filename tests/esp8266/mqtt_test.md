@@ -3,10 +3,18 @@ title: MQTT Test
 layout: default
 nav_order: 6
 parent: ESP8266
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test invio dati con MQTT
+
+## 1. Installazione delle librerie
+
+Installare la libreria PubSubClient by *Nick O'Leary* nell'Arduino IDE:
+
+![Adafruit GFX Library](../../images/arduino_ide/pubsubclient_library.png)
+
+## 2. Eseguire il codice
 
 Copiare il codice seguente in un file nell'Arduino IDE e sostituire i seguenti campi coi valori corretti:
 
@@ -32,7 +40,8 @@ const char* mqtt_server = "IP_ADDRESS";
 const char* MQTT_username = "USERNAME";
 const char* MQTT_password = "MQTT_PASSWORD";
 
-// Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
+// Initializes the espClient. You should change the espClient name
+// if you have multiple ESPs running in your home automation system
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -60,11 +69,11 @@ void callback(String topic, byte* message, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
   Serial.print(". Message: ");
-  String messageTemp;
+  String messageString;
   
   for (int i = 0; i < length; i++) {
     Serial.print((char)message[i]);
-    messageTemp += (char)message[i];
+    messageString += (char)message[i];
   }
   Serial.println();
 }

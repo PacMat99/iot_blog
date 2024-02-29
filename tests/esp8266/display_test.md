@@ -3,7 +3,7 @@ title: Display Test
 layout: default
 nav_order: 3
 parent: ESP8266
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test del display SSD1306
@@ -17,7 +17,7 @@ Collegare i pin del display SSD1306 come segue:
 3. SDA --> D2 ESP8266
 4. SCL --> D1 ESP8266
 
-![SDS011 Wiring Diagram](../../images/esp8266_display_wiring_diagram.png)  
+![SDS011 Wiring Diagram](../../images/wiring_diagrams/esp8266_display_wiring_diagram.png)  
 *Display Wiring Diagram*
 
 ## 2. Installazione delle librerie
@@ -25,9 +25,9 @@ Collegare i pin del display SSD1306 come segue:
 Installare le seguenti librerie nell'Arduino IDE:
 
 1. Adafruit GFX Library by *Adafruit*  
-   ![Adafruit GFX Library](../../images/gfx_library.png)  
+   ![Adafruit GFX Library](../../images/arduino_ide/gfx_library.png)  
 2. Adafruit SSD1306 by *Adafruit*  
-   ![Adafruit SSD1306 Library](../../images/ssd1306_library.png)  
+   ![Adafruit SSD1306 Library](../../images/arduino_ide/ssd1306_library.png)  
 
 ## 3. Eseguire il codice
 

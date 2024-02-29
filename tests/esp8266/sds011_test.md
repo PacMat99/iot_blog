@@ -3,7 +3,7 @@ title: SDS011 Test
 layout: default
 nav_order: 2
 parent: ESP8266
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test del sensore SDS011
@@ -12,14 +12,12 @@ grand_parent: ESP tests
 
 Collegare i pin del sensore SDS011 come segue:
 
-*ESP8266*
-
 1. 5V --> Vin ESP8266
 2. GND --> GND ESP8266
 3. RXD --> D6 ESP8266
 4. TXD --> D5 ESP8266
 
-![SDS011 Wiring Diagram](../../images/esp8266_sds011_wiring_diagram.png)  
+![SDS011 Wiring Diagram](../../images/wiring_diagrams/esp8266_sds011_wiring_diagram.png)  
 *ESP8266 SDS011 Wiring Diagram*
 
 ## 2. Eseguire il codice
