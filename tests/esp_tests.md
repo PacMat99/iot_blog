@@ -5,13 +5,6 @@ nav_order: 3
 has_children: true
 ---
 
-
-
-AGGIUNGERE INSTALLAZIONE LIBRERIA PUBSUBCLIENT
-
-AGGIUNGERE CASO CON INVIO DI SEGNALE TRAMITE NODERED AD ESEMPIO PER ACCENDERE UN RELÈ
-
-
 # Test ESP8266 / ESP32
 
 Per testare il corretto funzionamento dell'ESP è consigliabile procedere per step in modo da poter isolare al meglio i singoli problemi che possiamo riscontrare.  
