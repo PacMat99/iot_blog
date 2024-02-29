@@ -14,8 +14,7 @@ La comunicazione MQTT funziona come un sistema di publish and subscribe. I dispo
 
 Il broker MQTT si occupa di ricevere tutti i messaggi, filtrarli, decidere quali sono i topic interessati dai messaggi ricevuti e infine pubblicare i messaggi per tutti i client iscritti ai topic prescelti.
 
-![Mosquitto](./images/mosquitto_mqtt_broker.png)  
-*Mosquitto*
+![Mosquitto](./images/mosquitto_mqtt_broker.png)
 
 Puoi approfondire ulteriormente [qui](https://mosquitto.org/).
 

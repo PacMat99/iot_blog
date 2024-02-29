@@ -17,7 +17,7 @@ Esempio:
 192.168.68.101:1880
 ```
 
-![Node-RED URL](./images/nodered_url.png)
+![Node-RED URL](./images/nodered/nodered_url.png)
 
 Se non si conosce l'indirizzo ip del nostro Raspberry Pi è possibile trovarlo eseguendo il seguente comando:
 
@@ -25,17 +25,17 @@ Se non si conosce l'indirizzo ip del nostro Raspberry Pi è possibile trovarlo e
 hostname -I
 ```
 
-![Node-RED ip address](./images/hostname_i.png)
+![Node-RED ip address](./images/terminal/hostname_i.png)
 
 A questo punto dovresti trovarti di fronte ad una schermata di login simile alla seguente:
 
-![Node-RED login](./images/nodered_login.png)
+![Node-RED login](./images/nodered/nodered_login.png)
 
 ## 2. Com'è fatta la Dashboard di Node-RED
 
 Una volta eseguito il login si arriva all'interfaccia di Node-RED.
 
-![Node-RED login](./images/nodered_interface.png)
+![Node-RED login](./images/nodered/nodered_interface.png)
 
 ### Nodes
 
@@ -68,6 +68,6 @@ Installare due nodes aggiuntivi da *Menu --> Settings --> Palette --> Install*:
 1. node-red-dashboard
 2. node-red-node-mysql
 
-![Additional nodes](./images/additional_nodes.png)
+![Additional nodes](./images/nodered/additional_nodes.png)
 
 Avanti al [prossimo step](./db_setup.html)! :)

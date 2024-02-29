@@ -82,13 +82,7 @@ FLUSH PRIVILEGES;
 
 Non resta che creare le tabelle che ci permetteranno di memorizzare i dati ricevuti dall'ESP.
 
-Per farlo colleghiamoci a phpmyadmin dal browser
-
-```
-raspberryip/phpmyadmin
-```
-
-e dal tab SQL lanciamo le query seguenti per creare le tabelle.
+Per farlo colleghiamoci a phpmyadmin dal browser con l'URL `raspberryip/phpmyadmin` e dal tab SQL lanciamo le query seguenti per creare le tabelle.
 
 ```
 CREATE TABLE pm2_5 (
@@ -106,6 +100,6 @@ CREATE TABLE pm10 (
 );
 ```
 
-![Create Table](./images/create_table.png)
+![Create Table](./images/db/create_table.png)
 
 Avanti al [prossimo step](./nodered_flow_chart.html)! :)

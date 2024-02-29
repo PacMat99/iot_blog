@@ -3,7 +3,7 @@ title: SDS011 Test
 layout: default
 nav_order: 2
 parent: ESP32
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test del sensore SDS011
@@ -17,14 +17,14 @@ Collegare i pin del sensore SDS011 come segue:
 3. RXD --> TX2 ESP32 (GPIO17)
 4. TXD --> RX2 ESP32 (GPIO16)
 
-![SDS011 Wiring Diagram](../../images/esp32_sds011_wiring_diagram.png)  
+![SDS011 Wiring Diagram](../../images/wiring_diagrams/esp32_sds011_wiring_diagram.png)  
 *ESP32 SDS011 Wiring Diagram*
 
 ## 2. Installazione delle librerie
 
 Installare la libreria esp_sds011 by *Dirk O. Kaar* 
 
-![SDS011 Library](../../images/sds011_library.png)
+![SDS011 Library](../../images/arduino_ide/sds011_library.png)
 
 ## 3. Eseguire il codice
 

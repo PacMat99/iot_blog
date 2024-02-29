@@ -26,7 +26,7 @@ Node-RED è fruibile tramite browser e tramite il visual programming permette di
 4. Comunicare con servizi di terze parti
 5. Molto altro!
 
-![Node-RED](./images/home_automation_example.png)  
+![Node-RED](./images/nodered/home_automation_example.png)  
 *Node-RED*
 
 Puoi approfondire ulteriormente [qui](https://mosquitto.org/) e trovare degli esempi di utilizzo [qui](https://flows.nodered.org/).
@@ -42,21 +42,15 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 rispondere y alle prime due domande che avvieranno l'installazione.  
 A installazione finita vi troverete di fronte ad una schermata simile a quella seguente:
 
-![Node-RED Install](./images/nodered_install.png)
+![Node-RED Install](./images/terminal/nodered_install.png)
 
 Successivamente sarà necessario configurare Node-RED come impostando nome utente e passphrase e confermando le impostazioni di default delle altre voci:
 
-![Node-RED Config](./images/nodered_config.png)
+![Node-RED Config](./images/terminal/nodered_config.png)
 
-Ora possiamo avviare Node-RED per verificare che l'installazione e la configurazione siano state eseguite correttamente. Lanciando da terminale il comando
+Ora possiamo avviare Node-RED per verificare che l'installazione e la configurazione siano state eseguite correttamente. Lanciando da terminale il comando `node-red-start` dovremmo trovarci di fronte ad una schermata simile a questa:
 
-```
-node-red-start
-```
-
-dovremmo trovarci di fronte ad una schermata simile a questa:
-
-![Node-RED Start](./images/nodered_start.png)
+![Node-RED Start](./images/terminal/nodered_start.png)
 
 Infine abilitiamo il servizio di Node-RED in modo che si avvii in automatico all'accensione del Raspberry Pi:
 

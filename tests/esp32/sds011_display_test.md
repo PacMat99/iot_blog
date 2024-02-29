@@ -3,7 +3,7 @@ title: SDS011 and display Test
 layout: default
 nav_order: 4
 parent: ESP32
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
 # Test del display SSD1306
@@ -24,7 +24,7 @@ Collegare i pin del display SSD1306 come segue:
 3. RXD --> TX2 ESP32 (GPIO17)
 4. TXD --> RX2 ESP32 (GPIO16)
 
-![ESP32 Wiring Diagram](../../images/esp32_wiring_diagram.png)  
+![ESP32 Wiring Diagram](../../images/wiring_diagrams/esp32_wiring_diagram.png)  
 *ESP32 Wiring Diagram*
 
 ## 2. Installazione delle librerie
@@ -32,11 +32,11 @@ Collegare i pin del display SSD1306 come segue:
 Installare le seguenti librerie nell'Arduino IDE:
 
 1. Adafruit GFX Library by *Adafruit*  
-   ![Adafruit GFX Library](../../images/gfx_library.png)  
+   ![Adafruit GFX Library](../../images/arduino_ide/gfx_library.png)  
 2. Adafruit SSD1306 by *Adafruit*  
-   ![Adafruit SSD1306 Library](../../images/ssd1306_library.png)  
+   ![Adafruit SSD1306 Library](../../images/arduino_ide/ssd1306_library.png)  
 3. esp_sds011 by *Dirk O. Kaar*  
-   ![SDS011 Library](../../images/sds011_library.png)
+   ![SDS011 Library](../../images/arduino_ide/sds011_library.png)
 
 ## 3. Eseguire il codice
 

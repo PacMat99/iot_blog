@@ -3,18 +3,18 @@ title: WiFi Test
 layout: default
 nav_order: 5
 parent: ESP32
-grand_parent: ESP tests
+grand_parent: ESP code
 ---
 
-# Test del modulo WiFi dell'ESP
+# Test del modulo WiFi dell'ESP32
 
-Collegare l'ESP al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP32 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.  
+Il codice stampa ogni 5 secondi sul display seriale le reti WiFi che l'ESP32 rileva.
 
 ```
 #include "WiFi.h"
 
-void setup()
-{
+void setup() {
     Serial.begin(115200);
 
     // Set WiFi to station mode and disconnect from an AP if it was previously connected.
@@ -25,8 +25,7 @@ void setup()
     Serial.println("Setup done");
 }
 
-void loop()
-{
+void loop() {
     Serial.println("Scan start");
 
     // WiFi.scanNetworks will return the number of networks found.
