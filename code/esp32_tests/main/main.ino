@@ -19,6 +19,9 @@
 #define SDS_PIN_RX 16
 #define SDS_PIN_TX 17
 
+// LED pin
+#define LED 4
+
 #ifdef ESP32
 HardwareSerial& serialSDS(Serial2);
 Sds011Async< HardwareSerial > sds011(serialSDS);
@@ -28,7 +31,7 @@ Sds011Async< EspSoftwareSerial::UART > sds011(serialSDS);
 #endif
 
 constexpr int pm_tablesize = 20;
-int pm2_5_table[pm_tablesize];
+int pm25_table[pm_tablesize];
 int pm10_table[pm_tablesize];
 
 bool is_SDS_running = true;
@@ -79,7 +82,7 @@ PubSubClient client(espClient);
 
 // MQTT auxiliary functions
 
-// Don't change the function below. This functions connects your ESP8266 to your router
+// Don't change the function below. This functions connects your ESP32 to your router
 void setup_wifi() {
   delay(10);
   // We start by connecting to a WiFi network
@@ -96,31 +99,45 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
-// This functions is executed when some device publishes a message to a topic that your ESP8266 is subscribed to
+// This functions is executed when some device publishes a message to a topic that your ESP32 is subscribed to
 // Change the function below to add logic to your program, so when a device publishes a message to a topic that 
-// your ESP8266 is subscribed you can actually do something
+// your ESP32 is subscribed you can actually do something
 void callback(String topic, byte* message, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
   Serial.print(". Message: ");
-  String messageTemp;
-  
-  for (int i = 0; i < length; i++) {
+  String topicMessage;
+  int i;
+  for (i = 0; i < length; i++) {
     Serial.print((char)message[i]);
-    messageTemp += (char)message[i];
+    topicMessage += (char)message[i];
   }
   Serial.println();
+
+  if (String(topic) == "esp32/output") {
+    Serial.print("Turn led ");
+    if(topicMessage == "on"){
+      Serial.println("on");
+      digitalWrite(LED, HIGH);
+    }
+    else if(topicMessage == "off"){
+      Serial.println("off");
+      digitalWrite(LED, LOW);
+    }
+  }
 }
 
-// This functions reconnects your ESP8266 to your MQTT broker
-// Change the function below if you want to subscribe to more topics with your ESP8266 
+// This functions reconnects your ESP32 to your MQTT broker
+// Change the function below if you want to subscribe to more topics with your ESP32
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client", MQTT_username, MQTT_password)) {
+    if (client.connect("ESP32Client", MQTT_username, MQTT_password)) {
       Serial.println("connected");
+      // Subscribe
+      client.subscribe("esp32/output");
     }
     else {
       Serial.print("failed, rc=");
@@ -135,6 +152,8 @@ void reconnect() {
 void setup() {
   // Initialize Serial communication with the computer
   Serial.begin(115200);
+
+  pinMode(LED, OUTPUT);
 
   Serial.println("Initializing SDS011 Air Quality Monitor...");
 
@@ -208,25 +227,35 @@ void loop() {
   Serial.print(is_SDS_running);
   Serial.println(')');
 
-  float pm2_5;
-  float pm10;
-
   sds011.on_query_data_auto_completed([](int n) {
     Serial.println("Begin Handling SDS011 query data");
+    int pm25;
+    int pm10;
     Serial.print("n = "); Serial.println(n);
-    if (sds011.filter_data(n, pm2_5_table, pm10_table, pm2_5, pm10) && !isnan(pm10) && !isnan(pm2_5)) {
-      Serial.print("PM10: ");
-      Serial.print(pm10 / 10, 2);
-      Serial.print(" µg/m³   ");
+    if (sds011.filter_data(n, pm25_table, pm10_table, pm25, pm10) && !isnan(pm10) && !isnan(pm25)) {
       Serial.print("PM2.5: ");
-      Serial.print(pm2_5 / 10, 2);
+      Serial.print(float(pm25) / 10, 2);
+      Serial.print(" µg/m³   ");
+      Serial.print("PM10: ");
+      Serial.print(float(pm10) / 10, 2);
       Serial.println(" µg/m³");
     }
     Serial.println("End Handling SDS011 query data");
   });
 
-  if (!sds011.query_data_auto_async(pm_tablesize, pm2_5_table, pm10_table)) {
+  float pm25_float;
+  float pm10_float;
+  if (!sds011.query_data_auto_async(pm_tablesize, pm25_table, pm10_table)) {
     Serial.println("measurement capture start failed");
+  }
+  else {
+    int i;
+    for (i = 0, pm25_float = 0, pm10_float = 0; i < pm_tablesize; i++) {
+      pm25_float += pm25_table[i];
+      pm10_float += pm10_table[i];
+    }
+    pm25_float /= pm_tablesize;
+    pm10_float /= pm_tablesize;
   }
 
   deadline = millis() + duty_s * 1000;
@@ -236,15 +265,11 @@ void loop() {
     sds011.perform_work();
   }
 
-  String pm2_5_str = String(pm2_5, 2);
-  String pm10_str = String(pm10, 2);
+  String pm25_str = String(pm25_float / 10, 2);
+  String pm10_str = String(pm10_float, 2);
   // Print the values
-  Serial.print("PM2.5: ");
-  Serial.print(pm2_5, 2);  // 2 decimal places
-  Serial.print(" µg/m³   ");
-  Serial.print("PM10: ");
-  Serial.print(pm10, 2);  // 2 decimal places
-  Serial.println(" µg/m³   ");
+  Serial.print("PM2.5: " + pm25_str + " µg/m³   ");
+  Serial.print("PM10: " + pm10_str + " µg/m³   ");
 
   display.clearDisplay();
   display.setFont(&FreeMono9pt7b);
@@ -258,7 +283,7 @@ void loop() {
   display.setCursor(0, 30);
   display.print("PM2.5: ");
   display.setCursor(0, 50);
-  display.print(pm2_5_str);  // 2 decimal places
+  display.print(pm25_str);  // 2 decimal places
   display.print(" µg/m³");
   display.display();
   delay(3000);
@@ -281,8 +306,8 @@ void loop() {
   if (!client.connected())
     reconnect();
   if(!client.loop())
-    client.connect("ESP8266Client", MQTT_username, MQTT_password);
+    client.connect("ESP32Client", MQTT_username, MQTT_password);
   // Publishes pm2_5 and pm10 values    
-  client.publish("air_quality_monitor/pm2_5", pm2_5_str.c_str());
+  client.publish("air_quality_monitor/pm2_5", pm25_str.c_str());
   client.publish("air_quality_monitor/pm10", pm10_str.c_str());
 }
