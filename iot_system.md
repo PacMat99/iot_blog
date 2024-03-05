@@ -6,7 +6,7 @@ nav_order: 9
 
 # Test del display SSD1306
 
-Prendendo spunto dagli step precedenti, creare un sistema IoT che permetta lo scambio di dati tra l'ESP, il Raspberry Pi per raccogliere i dati dai sensori, salvarli nel DB MySQL e condividerli sulla rete LoRa.
+Prendendo spunto dagli step precedenti, creare un sistema IoT che permetta lo scambio di dati tra l'ESP, il Raspberry Pi per raccogliere i dati dai sensori, salvarli nel DB MySQL.
 
 ## 0. Componenti necessari
 
@@ -15,8 +15,7 @@ Prendendo spunto dagli step precedenti, creare un sistema IoT che permetta lo sc
 1 x Alimentatore per Raspberry Pi  
 1 x ESP8266 o ESP32  
 1 x display SSD1306  
-1 x SDS011  
-1 x modulo LoRa RFM95  
+1 x SDS011   
 1 x led  
 1 x resistenza 220ohm  
 1 x breadboard  
