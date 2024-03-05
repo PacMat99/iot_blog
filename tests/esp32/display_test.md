@@ -8,6 +8,13 @@ grand_parent: ESP code
 
 # Test del display SSD1306
 
+## 0. Componenti necessari
+
+1 x ESP32  
+1 x display SSD1306  
+1 x breadboard  
+Y x cavetti per collegare l'ESP a periferiche esterne
+
 ## 1. Creare il seguente schema elettrico
 
 Collegare i pin del display SSD1306 come segue:

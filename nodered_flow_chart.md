@@ -4,11 +4,6 @@ layout: default
 nav_order: 8
 ---
 
-
-TODO: AGGIUNGERE CASO CON INVIO DI SEGNALE TRAMITE NODERED AD ESEMPIO PER ACCENDERE UN RELÈ
-
-
-
 # Creazione del flow chart in Node-RED e della UI
 
 ## 1. Fare qualche test coi presenti in Node-RED

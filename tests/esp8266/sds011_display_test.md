@@ -6,7 +6,15 @@ parent: ESP8266
 grand_parent: ESP code
 ---
 
-# Test del display SSD1306
+# Test del display SSD1306 abbinato al sensore SDS011
+
+## 0. Componenti necessari
+
+1 x ESP8266  
+1 x display SSD1306  
+1 x SDS011  
+1 x breadboard  
+Y x cavetti per collegare l'ESP a periferiche esterne
 
 ## 1. Creare il seguente schema elettrico
 

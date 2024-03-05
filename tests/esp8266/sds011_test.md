@@ -8,6 +8,12 @@ grand_parent: ESP code
 
 # Test del sensore SDS011
 
+## 0. Componenti necessari
+
+1 x ESP8266  
+1 x SDS011  
+Y x cavetti per collegare l'ESP a periferiche esterne
+
 ## 1. Creare il seguente schema elettrico
 
 Collegare i pin del sensore SDS011 come segue:
