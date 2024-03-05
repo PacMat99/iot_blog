@@ -1,12 +1,25 @@
 ---
-title: Final Code
+title: IoT System
 layout: default
-nav_order: 8
-parent: ESP32
-grand_parent: ESP code
+nav_order: 9
 ---
 
 # Test del display SSD1306
+
+Prendendo spunto dagli step precedenti, creare un sistema IoT che permetta lo scambio di dati tra l'ESP, il Raspberry Pi per raccogliere i dati dai sensori, salvarli nel DB MySQL.
+
+## 0. Componenti necessari
+
+1 x Raspberry Pi  
+1 x scheda SD per Raspberry Pi  
+1 x Alimentatore per Raspberry Pi  
+1 x ESP8266 o ESP32  
+1 x display SSD1306  
+1 x SDS011   
+1 x led  
+1 x resistenza 220ohm  
+1 x breadboard  
+Y x cavetti per collegare l'ESP a periferiche esterne
 
 ## 1. Creare il seguente schema elettrico
 
@@ -46,7 +59,10 @@ Installare le seguenti librerie nell'Arduino IDE:
 
 ## 3. Eseguire il codice
 
-Collegare l'ESP32 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.
+Collegare l'ESP32 al pc, copiare il codice seguente in un file nell'Arduino IDE e caricarlo sul microcontrollore.  
+Ogni 30s l'ESP32 avvia il sensore SDS011, in altri 30s analizza l'aria e infine calcola il corretto valore di PM2.5 e PM10. Successivamente mostra i dati sul display oled e li invia a Node-Red tramite WiFi.  
+Quando l'ESP32 riceve da Node-Red un comando sul topic *esp32/output* accende o spegne il led di conseguenza.  
+Node-Red si occupa di salvare i dati nel DB MySQL.
 
 ```
 // sds011 code explanation
