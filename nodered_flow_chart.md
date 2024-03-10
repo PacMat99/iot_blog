@@ -52,6 +52,16 @@ e il nodo per la connessione al DB
 
 ![MySQL Node](./images/nodered/mysql_node.png)
 
+Non resta che configurare il nodo relativo allo switch per il led
+
+![LED Switch](./images/nodered/led_switch.png)
+
+e l'invio all'ESP tramite MQTT
+
+![MQTT LED](./images/nodered/mqtt_led.png)
+
+---
+
 Se abbiamo configurato tutti i nodi correttamente e clicchiamo su **Deploy**, andando nel tab di *Debug* di Node-RED dovremmo vedere le query che vengono inviate al nostro DB
 
 ![Debug Output](./images/nodered/debug_output.png)

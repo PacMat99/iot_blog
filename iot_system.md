@@ -4,9 +4,11 @@ layout: default
 nav_order: 9
 ---
 
-# Test del display SSD1306
+# Creazione di un sistema IoT completo
 
 Prendendo spunto dagli step precedenti, creare un sistema IoT che permetta lo scambio di dati tra l'ESP, il Raspberry Pi per raccogliere i dati dai sensori, salvarli nel DB MySQL.
+
+![Node-Red IoT System](../../images/wiring_diagrams/iot_system.png)
 
 ## 0. Componenti necessari
 
