@@ -110,14 +110,13 @@ void setup() {
 // For this project, you don't need to change anything in the loop function. Basically it ensures that you ESP is connected to your broker
 void loop() {
 
-  if (!client.connected()) {
+  if (!client.connected())
     reconnect();
-  }
-  if(!client.loop()) {
+  if(!client.loop())
     client.connect("ESP32Client", MQTT_username, MQTT_password);
 
-    client.publish("TOPIC", String(5).c_str());
-    client.publish("TOPIC", String(6).c_str());
-  }
+  client.publish("TOPIC", String(5).c_str());
+  client.publish("TOPIC", String(6).c_str());
+  delay(5000);
 }
 ```
