@@ -1,9 +1,3 @@
-
-
-
-// sds011 code explanation
-// https://electronicsinnovation.com/interfacing-sds011-air-quality-sensor-with-esp8266-diy-air-pollution-monitor-part1/
-
 // libraries for display
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -43,6 +37,10 @@ Sds011Async< EspSoftwareSerial::UART > sds011(serialSDS);
 
 int timer = 0;
 int change_display = 0;
+bool working;
+bool ready_to_publish;
+float pm25_float;
+float pm10_float;
 
 constexpr int pm_tablesize = 20;
 int pm25_table[pm_tablesize];
@@ -83,14 +81,14 @@ void stop_SDS() {
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 // MQTT global variables
-const char* ssid = "Pac's wifi_EXT";
-const char* password = "Guglielmo06121937gp";
+const char* ssid = "SSID";
+const char* password = "PASSWORD";
 
-const char* mqtt_server = "192.168.68.101";
+const char* mqtt_server = "IP_ADDRESS";
 
 // MQTT broker credentials
-const char* MQTT_username = "pacmat";
-const char* MQTT_password = "Mattia2102";
+const char* MQTT_username = "USERNAME";
+const char* MQTT_password = "MQTT_PASSWORD";
 
 // Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
 WiFiClient espClient;
@@ -121,7 +119,7 @@ void setup_wifi() {
 void callback(String topic, byte* message, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
-  Serial.println(". Message: ");
+  Serial.print(". Message: ");
   String topicMessage;
   int i;
   for (i = 0; i < length; i++) {
@@ -162,6 +160,11 @@ void reconnect() {
       delay(500);
     }
   }
+}
+
+// This functions publishes a string to the given topic
+void publishString(String topic, String str) {
+  client.publish(topic.c_str(), str.c_str());
 }
 
 void setup() {
@@ -217,10 +220,6 @@ void setup() {
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
 
-  delay(2000);
-}
-
-void loop() {
   bool sds_on = false;
   if (!sds_on) {
     stop_SDS();
@@ -228,67 +227,73 @@ void loop() {
     Serial.print(is_SDS_running);
     Serial.println(')');
   }
+  working = false;
+  ready_to_publish = false;
 
-  if (static_cast<int32_t>(deadline - millis()) > 0) {
+  delay(2000);
+}
+
+void loop() {
+  if (static_cast<int32_t>(deadline - millis()) > 0 && !working) {
     if (millis() > now + 1000) {
       now = millis();
       Serial.println(static_cast<int32_t>(deadline - millis()) / 1000);
       sds011.perform_work();
     }
   }
+  else if (static_cast<int32_t>(deadline - millis()) < 0 && !working) {
+    deadline = millis() + 30 * 1000;
+    now = 0;
+    working = true;
+    start_SDS();
+    Serial.print("started SDS011 (is running = ");
+    Serial.print(is_SDS_running);
+    Serial.println(')');
+    sds011.on_query_data_auto_completed([](int n) {
+      Serial.println("Begin Handling SDS011 query data");
+      int pm25;
+      int pm10;
+      if (sds011.filter_data(n, pm25_table, pm10_table, pm25, pm10) && !isnan(pm10) && !isnan(pm25)) {
+        Serial.print("PM2.5: ");
+        Serial.print(float(pm25) / 10, 2);
+        Serial.print(" µg/m³   ");
+        Serial.print("PM10: ");
+        Serial.print(float(pm10) / 10, 2);
+        Serial.println(" µg/m³");
+      }
+      Serial.println("End Handling SDS011 query data");
+    });
 
-  constexpr uint32_t duty_s = 30;
-
-  start_SDS();
-  Serial.print("started SDS011 (is running = ");
-  Serial.print(is_SDS_running);
-  Serial.println(')');
-
-  sds011.on_query_data_auto_completed([](int n) {
-    Serial.println("Begin Handling SDS011 query data");
-    int pm25;
-    int pm10;
-    if (sds011.filter_data(n, pm25_table, pm10_table, pm25, pm10) && !isnan(pm10) && !isnan(pm25)) {
-      Serial.print("PM2.5: ");
-      Serial.print(float(pm25) / 10, 2);
-      Serial.print(" µg/m³   ");
-      Serial.print("PM10: ");
-      Serial.print(float(pm10) / 10, 2);
-      Serial.println(" µg/m³");
+    if (!sds011.query_data_auto_async(pm_tablesize, pm25_table, pm10_table)) {
+      Serial.println("measurement capture start failed");
     }
-    Serial.println("End Handling SDS011 query data");
-  });
-
-  float pm25_float;
-  float pm10_float;
-  if (!sds011.query_data_auto_async(pm_tablesize, pm25_table, pm10_table)) {
-    Serial.println("measurement capture start failed");
-  }
-  else {
-    int i;
-    for (i = 0, pm25_float = 0, pm10_float = 0; i < pm_tablesize; i++) {
-      pm25_float += pm25_table[i];
-      pm10_float += pm10_table[i];
+    else {
+      int i;
+      for (i = 0, pm25_float = 0, pm10_float = 0; i < pm_tablesize; i++) {
+        pm25_float += pm25_table[i];
+        pm10_float += pm10_table[i];
+      }
+      pm25_float /= pm_tablesize;
+      pm10_float /= pm_tablesize;
     }
-    pm25_float /= pm_tablesize;
-    pm10_float /= pm_tablesize;
   }
 
-  deadline = millis() + duty_s * 1000;
-  now = 0;
-  while (static_cast<int32_t>(deadline - millis()) > 0) {
+  if (static_cast<int32_t>(deadline - millis()) > 0 && working) {
     if (millis() > now + 1000) {
       now = millis();
       Serial.println(static_cast<int32_t>(deadline - millis()) / 1000);
       sds011.perform_work();
     }
+  }
+  else if (static_cast<int32_t>(deadline - millis()) < 0 && working) {
+    deadline = millis() + 30 * 1000;
+    now = 0;
+    working = false;
+    ready_to_publish = true;
   }
 
   String pm25_str = String(pm25_float / 10, 2);
   String pm10_str = String(pm10_float, 2);
-  // Print the values
-  Serial.print("PM2.5: " + pm25_str + " µg/m³   ");
-  Serial.print("PM10: " + pm10_str + " µg/m³   ");
 
   if (timer > timer + 3000) {
     display.clearDisplay();
@@ -320,7 +325,13 @@ void loop() {
     reconnect();
   if(!client.loop())
     client.connect("ESPClient", MQTT_username, MQTT_password);
-  // Publishes pm2_5 and pm10 values    
-  client.publish("air_quality_monitor/pm2_5", pm25_str.c_str());
-  client.publish("air_quality_monitor/pm10", pm10_str.c_str());
+  if (ready_to_publish) {
+    // Publishes pm2_5 and pm10 values  
+    publishString("air_quality_monitor/pm2_5", pm25_str);
+    publishString("air_quality_monitor/pm10", pm10_str);
+    Serial.print("PM2.5: " + pm25_str + " µg/m³   ");
+    Serial.print("PM10: " + pm10_str + " µg/m³   ");
+    ready_to_publish = false;
+  }
+  delay(500);
 }
