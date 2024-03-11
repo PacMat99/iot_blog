@@ -28,7 +28,7 @@ Copiare il codice seguente in un file nell'Arduino IDE e sostituire i seguenti c
 Quindi collegare l'ESP8266 al pc e caricare il codice sul microcontrollore.
 
 ```
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <PubSubClient.h>
 
 const char* ssid = "SSID";
@@ -40,8 +40,7 @@ const char* mqtt_server = "IP_ADDRESS";
 const char* MQTT_username = "USERNAME";
 const char* MQTT_password = "MQTT_PASSWORD";
 
-// Initializes the espClient. You should change the espClient name
-// if you have multiple ESPs running in your home automation system
+// Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -69,17 +68,17 @@ void callback(String topic, byte* message, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
   Serial.print(". Message: ");
-  String messageString;
+  String messageTemp;
   
   for (int i = 0; i < length; i++) {
     Serial.print((char)message[i]);
-    messageString += (char)message[i];
+    messageTemp += (char)message[i];
   }
   Serial.println();
 }
 
 // This functions reconnects your ESP8266 to your MQTT broker
-// Change the function below if you want to subscribe to more topics with your ESP8266 
+// Change the function below if you want to subscribe to more topics with your ESP8266
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
@@ -111,14 +110,13 @@ void setup() {
 // For this project, you don't need to change anything in the loop function. Basically it ensures that you ESP is connected to your broker
 void loop() {
 
-  if (!client.connected()) {
+  if (!client.connected())
     reconnect();
-  }
-  if(!client.loop()) {
+  if(!client.loop())
     client.connect("ESP8266Client", MQTT_username, MQTT_password);
 
-    client.publish("TOPIC", String(5).c_str());
-    client.publish("TOPIC", String(6).c_str());
-  }
+  client.publish("TOPIC", String(5).c_str());
+  client.publish("TOPIC", String(6).c_str());
+  delay(5000);
 }
 ```
